@@ -13,5 +13,11 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	//return View::make('hello');
+
+	$twitter =  Twitter::getUserTimeline(array('screen_name' => 'lemondefr', 'count' => 20, 'format' => 'json'));
+
+	$tweet = json_decode($twitter);
+
+	dd($tweet);
 });
