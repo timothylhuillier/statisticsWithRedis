@@ -20,5 +20,17 @@ Route::get('/', function()
 
 	$name = $redis->get('name');
 
-	dd($name);
+	//dd($name);
+
+	return View::make('login');
+});
+
+Route::post('login', function ()
+{
+
+	$id = Input::get('id');
+
+	Session::put('id', $id);
+
+	dd(Session::get('id'));
 });
