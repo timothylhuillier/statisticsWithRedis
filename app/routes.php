@@ -13,11 +13,12 @@
 
 Route::get('/', function()
 {
-	//return View::make('hello');
 
-	$twitter =  Twitter::getUserTimeline(array('screen_name' => 'lemondefr', 'count' => 20, 'format' => 'json'));
+	$redis = RedisMotherFucker::connection();
 
-	$tweet = json_decode($twitter);
+	$redis->set('name', 'Taylor');
 
-	dd($tweet);
+	$name = $redis->get('name');
+
+	dd($name);
 });
