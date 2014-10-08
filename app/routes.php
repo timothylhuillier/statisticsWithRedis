@@ -22,15 +22,28 @@ Route::get('/', function()
 
 	//dd($name);
 
-	return View::make('login');
+	var_dump(Session::all());
+
+	if(!Session::get('name')){
+
+		return View::make('login');
+	}else {
+
+		dd(Session::get('name'));
+	}
+	
 });
 
 Route::post('login', function ()
 {
 
-	$id = Input::get('id');
+	$name = Input::get('id');
 
-	Session::put('id', $id);
+	Session::put('username', $name);
+});
 
-	dd(Session::get('id'));
+// supprime les items enregistrés
+Route::get('flush', function(){
+
+	Session::flush();
 });
